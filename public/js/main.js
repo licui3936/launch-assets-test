@@ -31,4 +31,15 @@ async function init() {
             });
         });
     }
+
+    // listen on file download event
+    win.on("file-download-completed", function (event) {
+        console.log('file download complete');
+        const fileExtension = event.fileName.split('.').pop();
+        if (fileExtension === 'exe') {
+            fin.System.launchExternalProcess({fileUuid: event.fileUuid});
+        }
+    }, (evt) => {
+        console.log(evt);
+    });
 }

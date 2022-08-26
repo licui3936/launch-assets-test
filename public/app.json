@@ -6,11 +6,59 @@
         "applicationIcon": "http://localhost:5555/favicon.ico",
         "autoShow": true,
         "saveWindowState": true,
+        "defaultDomainSettings": {
+            "rules": [
+                {
+                    "match": [
+                        "*://filesamples.com/*",
+                        "http://localhost:5555/*"
+                    ],
+                    "options": {
+                        "downloadSettings": {
+                            "rules": [
+                                {
+                                    "match": [
+                                        "*://*/*.xls", "*://*/*.csv", "*://*/*.ppt"
+                                    ],
+                                    "behavior": "no-prompt"
+                                },
+                                {
+									"match": [
+										"*://*/*.exe"
+									],
+									"behavior": "prompt"
+								},
+                                {
+                                    "match": [
+                                        "<all_urls>"
+                                    ],
+                                    "behavior": "prompt"								
+                                }
+                            ]
+                        },
+                        "assetSettings": {
+                            "rules": [
+                                {
+                                    "match": [
+                                        "*://*/*.zip"
+                                    ],
+                                    "behavior": "allowed"
+                                } ,
+                                {
+                                    "match": [
+                                        "<all_urls>"
+                                    ],
+                                    "behavior": "block"								
+                                }                                             
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
         "permissions": {
             "System": {
-				"launchExternalProcess": {
-					"allowList": ["assets"]
-				}
+				"launchExternalProcess": true
 			}
         }
     },
