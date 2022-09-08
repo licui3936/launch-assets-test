@@ -35,22 +35,6 @@
                                     "behavior": "prompt"								
                                 }
                             ]
-                        },
-                        "assetSettings": {
-                            "rules": [
-                                {
-                                    "match": [
-                                        "*://*/*.zip"
-                                    ],
-                                    "behavior": "allowed"
-                                } ,
-                                {
-                                    "match": [
-                                        "<all_urls>"
-                                    ],
-                                    "behavior": "block"								
-                                }                                             
-                            ]
                         }
                     }
                 }
@@ -58,13 +42,57 @@
         },
         "permissions": {
             "System": {
-				"launchExternalProcess": true
+                "downloadAsset": true,
+                "openUrlWithBrowser": {
+                    "enabled": true,
+                    "protocols": ["slack", "msteams"]
+                },
+				"launchExternalProcess": {
+                    "assets": {
+                        "enabled": true,
+                        "srcRules": [
+                            {
+                                "match": [
+                                    "http://localhost:5555/*.zip"
+                                ],
+                                "behavior": "allow"                         
+                            },
+                            {
+                                "match": [
+                                    "<all_urls>"
+                                ],
+                                "behavior": "block"								
+                            }      
+                        ]
+
+                    },
+                    "downloads": {
+                        "enabled": true
+                    },
+                    "executables": {
+                        "enabled": true,
+                        "pathRules": [
+                            {
+                                "match": [
+                                    "C:/Windows/System32/"
+                                ],
+                                "behavior": "allow"
+                            },
+                            {
+                                "match": [
+                                    "*"
+                                ],
+                                "behavior": "block"								
+                            }
+                        ]
+                    }
+                }
 			}
         }
     },
     "runtime": {
         "arguments": "--v=1 --inspect=9222",
-        "version": "canary"
+        "version": "29.105.71.22"
     },
     "shortcut": {
         "company": "OpenFin",
@@ -74,7 +102,7 @@
     },
 	"appAssets": [
 		{
-		  "src": "http://localhost:5555/assets/cwd-test.zip",
+		  "src": "http://localhost:5555/assets/assetTest.zip",
 		  "alias": "cwdTest",
 		  "target": "testCWD.bat",
 		  "version": "1.0.0"
