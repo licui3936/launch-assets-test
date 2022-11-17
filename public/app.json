@@ -48,23 +48,23 @@
                     "protocols": ["slack", "msteams"]
                 },
 				"launchExternalProcess": {
+					"enabled": true,
                     "assets": {
-                        "enabled": true,
-                        "srcRules": [
-                            {
-                                "match": [
-                                    "http://localhost:5555/*.zip"
-                                ],
-                                "behavior": "allow"                         
-                            },
-                            {
-                                "match": [
-                                    "<all_urls>"
-                                ],
-                                "behavior": "block"								
-                            }      
-                        ]
-
+						"enabled": true,
+						"srcRules": [
+							{
+								"match": [
+									"*://built-on-openfin.github.io/*"
+								],
+								"behavior": "allow"                        
+							},
+							{
+								"match": [
+									"<all_urls>"
+								],
+								"behavior": "block"                            
+							}
+						]
                     },
                     "downloads": {
                         "enabled": true
@@ -74,13 +74,13 @@
                         "pathRules": [
                             {
                                 "match": [
-                                    "C:/Windows/System32/"
+                                    "*/Windows/System32/*.exe"
                                 ],
                                 "behavior": "allow"
                             },
                             {
                                 "match": [
-                                    "*"
+                                    "*.exe"
                                 ],
                                 "behavior": "block"								
                             }
@@ -92,7 +92,7 @@
     },
     "runtime": {
         "arguments": "--v=1 --inspect=9222",
-        "version": "stable"
+        "version": "canary"
     },
     "shortcut": {
         "company": "OpenFin",
@@ -106,6 +106,13 @@
 		  "alias": "cwdTest",
 		  "target": "testCWD.bat",
 		  "version": "1.0.0"
-		}
+		},
+		{
+            "alias": "winform-interop-example",
+            "version": "4.0.0",
+            "src": "https://built-on-openfin.github.io/workspace-starter/workspace/v8.0.0/common/assets/native-interop-example.zip",
+            "target": "OpenFin.Interop.Win.Sample.exe",
+            "forceDownload": true
+        }
 	]
 }
